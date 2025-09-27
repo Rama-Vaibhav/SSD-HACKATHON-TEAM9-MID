@@ -1,0 +1,14 @@
+.home-container {
+  display: flex;
+  gap: 20px; /* space between boxes */
+  padding: 20px;
+  height: 100vh; /* full viewport height */
+  width: 600px;
+}
+
+.box {
+  flex: 1; /* each box takes equal width */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
