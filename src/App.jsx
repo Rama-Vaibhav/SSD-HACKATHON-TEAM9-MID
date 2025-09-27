@@ -4,6 +4,9 @@ import "./App.css";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import ProtectedRouter from "./routes/ProtectedRouter";
+import Dashboard from "./component/Dashboard/Dashboard";
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -13,13 +16,21 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/signup',
-        element: <SignUp />
+        path: "/signup",
+        element: <SignUp />,
       },
       {
-        path: '/login',
-        element: <Login />
-      }
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <ProtectedRouter>
+            <Dashboard />
+          </ProtectedRouter>
+        ),
+      },
     ],
   },
 ]);
