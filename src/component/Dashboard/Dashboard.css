@@ -1,0 +1,134 @@
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #12121f;
+  color: #e0e0e0;
+}
+
+.dashboard-container {
+  padding: 40px 30px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Header */
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.role-text {
+  font-size: 1rem;
+  color: #9a9ab0;
+}
+
+/* Classes Section */
+.classes-section h2 {
+  font-size: 1.8rem;
+  color: #ffca28; /* vibrant accent */
+  margin-bottom: 15px;
+}
+
+.no-classes {
+  font-style: italic;
+  color: #777;
+}
+
+/* Classes Grid */
+.classes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+/* Class Card */
+.class-card {
+  background: linear-gradient(145deg, #1f1f2d, #161623);
+  border-radius: 16px;
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5),
+              -6px -6px 20px rgba(255, 255, 255, 0.05);
+  width: 240px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.class-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.7),
+              -10px -10px 25px rgba(255, 255, 255, 0.05);
+}
+
+.class-card-info {
+  cursor: pointer;
+}
+
+.class-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  color: #ffdd57;
+}
+
+.class-card p {
+  margin: 5px 0;
+  color: #ccc;
+}
+
+/* Delete Button */
+.delete-btn {
+  margin-top: 15px;
+  padding: 10px;
+  background: #e53935;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #c62828;
+  transform: translateY(-2px);
+}
+
+/* CreateClass Button (if exists) */
+.create-class-btn {
+  padding: 12px 25px;
+  background: #43a047;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.create-class-btn:hover {
+  background: #388e3c;
+  transform: translateY(-2px);
+}
+
+/* Loading Text */
+.loading-text {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .classes-grid {
+    justify-content: center;
+  }
+  .class-card {
+    width: 90%;
+  }
+}

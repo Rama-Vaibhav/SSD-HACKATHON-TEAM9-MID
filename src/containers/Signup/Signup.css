@@ -1,68 +1,138 @@
+/* Signup.css */
 
+/* Root body styling */
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+/* Signup container card */
 .signup-container {
+  background-color: #ffffff;
+  padding: 45px 40px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 90%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-form{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #f0f2f5;
-  font-family: Arial, sans-serif;
 }
 
-.signup-form {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  text-align: center;
+
+.signup-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
 }
 
+/* Form header */
 .signup-form h2 {
-  margin-bottom: 1.5rem;
-  color: #333;
+  text-align: center;
+  color: #333333;
+  font-size: 2rem;
+  margin-bottom: 35px;
+  letter-spacing: 0.5px;
 }
 
-.signup-form input, .signup-form select {
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Input fields and select dropdown */
+.signup-form input,
+.signup-form select {
+  width: 100%;
+  padding: 15px 18px;
+  margin-bottom: 22px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
   font-size: 1rem;
+  background-color: #f5f5f5;
+  color: #000; /* text color black */
+  transition: all 0.3s ease;
 }
 
-.signup-form input:focus, .signup-form select:focus {
+.signup-form input:focus,
+.signup-form select:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 10px rgba(37, 117, 252, 0.3);
   outline: none;
-  border-color: #007bff;
+  background-color: #ffffff;
 }
 
+/* Floating subtle shadow on hover */
+.signup-form input:hover,
+.signup-form select:hover {
+  box-shadow: 0 4px 15px rgba(37, 117, 252, 0.1);
+}
+
+
+
+/* Submit button */
 .signup-form button {
-  padding: 0.75rem;
-  background-color: #007bff;
-  color: white;
+  width: 100%;
+  padding: 15px 18px;
+  background: #2575fc;
+  color: #ffffff;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .signup-form button:hover {
-  background-color: #0056b3;
+  background: #145bd8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 117, 252, 0.3);
 }
 
-.login-link {
-  margin-top: 1rem;
-  color: #555;
+/* Already have an account link */
+.signup-container .login-link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555555;
 }
 
-.login-link a {
-  color: #007bff;
+.signup-container .login-link a {
+  color: #2575fc;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.login-link a:hover {
+.signup-container .login-link a:hover {
+  color: #145bd8;
   text-decoration: underline;
+}
+
+/* Optional: Add a subtle divider */
+.signup-container .divider {
+  margin: 25px 0;
+  text-align: center;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 450px) {
+  .signup-container {
+    padding: 35px 25px;
+  }
+
+  .signup-form h2 {
+    font-size: 1.7rem;
+  }
+
+  .signup-form button {
+    font-size: 1rem;
+    padding: 14px 16px;
+  }
 }

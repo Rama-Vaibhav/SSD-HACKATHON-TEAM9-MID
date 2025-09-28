@@ -60,8 +60,7 @@ const LoginContainer = () => {
   }, [userRole, navigate]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Login Page</h2>
+    <div>
       <Login
         email={email}
         password={password}

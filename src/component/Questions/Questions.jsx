@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { db } from "../../db/db";
+import './question.css';
 
 const socket = io("http://localhost:5000");
 
@@ -10,10 +11,8 @@ const Questions = ({ classCode }) => {
   useEffect(() => {
     if (!classCode) return;
 
-    // Join class room
     socket.emit("joinClass", classCode);
 
-    // Fetch existing questions from professor_dashboard view
     const fetchQuestions = async () => {
       try {
         const { data, error } = await db
@@ -26,24 +25,19 @@ const Questions = ({ classCode }) => {
 
         setQuestions(data || []);
       } catch (err) {
-        console.error("Error fetching questions:", err.message);
+        console.error(err.message);
       }
     };
 
     fetchQuestions();
 
-    // Listen for new questions and updates via Socket.IO
     socket.on("newQuestion", (q) => {
-      if (q.classCode === classCode) {
-        setQuestions((prev) => [...prev, q]);
-      }
+      if (q.classCode === classCode) setQuestions(prev => [...prev, q]);
     });
 
     socket.on("updateQuestion", (updatedQ) => {
-      setQuestions((prev) =>
-        prev.map((q) =>
-          q.question_id === updatedQ.question_id ? updatedQ : q
-        )
+      setQuestions(prev =>
+        prev.map(q => q.question_id === updatedQ.question_id ? updatedQ : q)
       );
     });
 
@@ -54,19 +48,15 @@ const Questions = ({ classCode }) => {
     };
   }, [classCode]);
 
-  // Update importance or status
+  // Toggle importance or status
   const toggleField = async (questionId, field) => {
-    const question = questions.find((q) => q.question_id === questionId);
+    const question = questions.find(q => q.question_id === questionId);
     if (!question) return;
 
     const newValue =
       field === "importance"
-        ? question.importance === "Important"
-          ? "Unimportant"
-          : "Important"
-        : question.status === "Answered"
-        ? "Unanswered"
-        : "Answered";
+        ? question.importance === "Important" ? "Unimportant" : "Important"
+        : question.status === "Answered" ? "Unanswered" : "Answered";
 
     try {
       const { data, error } = await db
@@ -78,11 +68,8 @@ const Questions = ({ classCode }) => {
 
       if (error) throw error;
 
-      // Update frontend state
-      setQuestions((prev) =>
-        prev.map((q) =>
-          q.question_id === questionId ? { ...q, [field]: newValue } : q
-        )
+      setQuestions(prev =>
+        prev.map(q => q.question_id === questionId ? { ...q, [field]: newValue } : q)
       );
 
       socket.emit("updateQuestion", { ...data, classCode });
@@ -92,67 +79,39 @@ const Questions = ({ classCode }) => {
   };
 
   return (
-    <div>
-      <h3>Questions for Class {classCode}</h3>
+    <div className="questions-wrapper">
+      <h2 className="title">Class {classCode} Questions</h2>
       {questions.length === 0 ? (
-        <p>No questions yet...</p>
+        <p className="no-questions">No questions have been asked yet.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          {questions.map((q) => (
-            <li
+        <div className="questions-grid">
+          {questions.map(q => (
+            <div
               key={q.question_id}
-              style={{
-                marginBottom: "12px",
-                padding: "10px",
-                border: "1px solid #ccc",
-                borderRadius: "6px",
-              }}
+              className={`question-card ${q.status.toLowerCase()}`}
             >
-              <div>
-                <b>{q.student_name}:</b> {q.question}
+              {q.importance === "Important" && <div className="star">★</div>}
+              <div className="question-text">
+                <span className="student-name">{q.student_name}:</span>
+                {q.question}
               </div>
-              <div style={{ marginTop: "6px" }}>
+              <div className="tags">
                 <span
-                  style={{
-                    padding: "2px 6px",
-                    borderRadius: "4px",
-                    backgroundColor:
-                      q.importance === "Important" ? "#ffcccc" : "#e0e0e0",
-                    color: q.importance === "Important" ? "#900" : "#555",
-                    fontSize: "12px",
-                    marginRight: "8px",
-                  }}
-                >
-                  {q.importance || "Unimportant"}
-                </span>
-                <span
-                  style={{
-                    padding: "2px 6px",
-                    borderRadius: "4px",
-                    backgroundColor:
-                      q.status === "Answered" ? "#ccffcc" : "#f0f0f0",
-                    color: q.status === "Answered" ? "#090" : "#555",
-                    fontSize: "12px",
-                  }}
-                >
-                  {q.status || "Unanswered"}
-                </span>
-              </div>
-              {/* Always show toggle buttons since only professors access this */}
-              <div style={{ marginTop: "6px" }}>
-                <button
+                  className={`tag importance ${q.importance.toLowerCase()}`}
                   onClick={() => toggleField(q.question_id, "importance")}
-                  style={{ marginRight: "5px" }}
                 >
-                  Toggle Importance
-                </button>
-                <button onClick={() => toggleField(q.question_id, "status")}>
-                  Toggle Status
-                </button>
+                  {q.importance}
+                </span>
+                <span
+                  className={`tag status ${q.status.toLowerCase()}`}
+                  onClick={() => toggleField(q.question_id, "status")}
+                >
+                  {q.status}
+                </span>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

@@ -1,0 +1,132 @@
+/* Wrapper */
+.questions-wrapper {
+  padding: 30px;
+  background: #1a1a2e; /* Dark wall background */
+  min-height: 100vh;
+  font-family: 'Patrick Hand', 'Comic Sans MS', cursive; /* Handwritten feel */
+  color: #333;
+}
+
+/* Title */
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #ffcc00; /* Sticky note accent */
+  text-align: center;
+}
+
+/* No questions message */
+.no-questions {
+  font-size: 16px;
+  color: #aaa;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Questions grid */
+.questions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* Sticky note card */
+.question-card {
+  position: relative;
+  background: #fff59d; /* Default sticky note yellow */
+  border-radius: 10px;
+  padding: 18px 15px;
+  width: 220px;
+  min-height: 120px;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
+  transform: rotate(calc(-3deg + 6deg * var(--i))); /* Slight tilt */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-card:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 6px 6px 14px rgba(0,0,0,0.3);
+}
+
+/* Important star */
+.star {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 20px;
+  color: #f44336; /* Red star for important */
+}
+
+/* Question text */
+.question-text {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #222;
+}
+
+.student-name {
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+/* Tag container */
+.tags {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Tag styles */
+.tag {
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+/* Importance tag */
+.tag.importance.important {
+  background: #ff8a80;
+  color: #fff;
+}
+
+.tag.importance.unimportant {
+  background: #ffe57f;
+  color: #555;
+}
+
+/* Status tag */
+.tag.status.answered {
+  background: #81c784;
+  color: #fff;
+}
+
+.tag.status.unanswered {
+  background: #ffe082;
+  color: #555;
+}
+
+/* Hover effect on tags */
+.tag:hover {
+  opacity: 0.8;
+}
+
+/* Card backgrounds for answered/unanswered */
+.question-card.answered {
+  background: #dcedc8; /* Light green sticky */
+}
+
+.question-card.unanswered {
+  background: #fff9c4; /* Light yellow sticky */
+}
+
+

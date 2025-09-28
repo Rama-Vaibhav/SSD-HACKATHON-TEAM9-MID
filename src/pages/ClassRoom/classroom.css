@@ -1,0 +1,116 @@
+/* ClassRoom.css */
+
+/* Root container */
+.classroom-container {
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Page heading */
+.classroom-container h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Ask question section */
+.ask-question {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.ask-question input[type="text"] {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.ask-question input[type="text"]:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.25);
+  outline: none;
+}
+
+.ask-question button {
+  padding: 12px 20px;
+  background-color: #2575fc;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ask-question button:hover {
+  background-color: #145bd8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 117, 252, 0.3);
+}
+
+/* Questions list */
+.questions-section h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.questions-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.questions-list li {
+  background-color: #f7f7f7;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.questions-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.questions-list li strong {
+  color: #2575fc;
+}
+
+/* No questions message */
+.questions-section p {
+  font-style: italic;
+  color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .ask-question {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ask-question input[type="text"] {
+    width: 100%;
+  }
+
+  .ask-question button {
+    width: 100%;
+  }
+}
