@@ -7,6 +7,7 @@ const socket = io("http://localhost:5000");
 
 const Questions = ({ classCode }) => {
   const [questions, setQuestions] = useState([]);
+  const [filter, setFilter] = useState("All"); // Filter state
 
   useEffect(() => {
     if (!classCode) return;
@@ -78,14 +79,37 @@ const Questions = ({ classCode }) => {
     }
   };
 
+  // Apply filter
+  const filteredQuestions = questions.filter(q => {
+    if (filter === "All") return true;
+    return q.status === filter;
+  });
+
   return (
     <div className="questions-wrapper">
       <h2 className="title">Class {classCode} Questions</h2>
-      {questions.length === 0 ? (
-        <p className="no-questions">No questions have been asked yet.</p>
+
+      {/* Filter dropdown */}
+      <div className="filter-container">
+        <label htmlFor="statusFilter">Filter by Status:</label>
+        <select
+          id="statusFilter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="All">All</option>
+          <option value="Unanswered">Unanswered</option>
+          <option value="Answered">Answered</option>
+        </select>
+      </div>
+
+      <br />
+
+      {filteredQuestions.length === 0 ? (
+        <p className="no-questions">No questions match the selected filter.</p>
       ) : (
         <div className="questions-grid">
-          {questions.map(q => (
+          {filteredQuestions.map(q => (
             <div
               key={q.question_id}
               className={`question-card ${q.status.toLowerCase()}`}

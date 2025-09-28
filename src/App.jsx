@@ -9,7 +9,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import Dashboard from "./component/Dashboard/Dashboard";
 import ClassRoom from "./pages/ClassRoom/ClassRoom";
 import ProfessorClassRoom from "./pages/ProffClassRoom/ProffClassRoom";
-
+import TaDashboard from "./pages/TaDashboard/TaDashboard";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -46,6 +46,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRouter>
             <ProfessorClassRoom />
+          </ProtectedRouter>
+        ),
+      },
+      {
+        path: "/ta-dashboard",
+        element: (
+          <ProtectedRouter>
+            <TaDashboard />
           </ProtectedRouter>
         ),
       },

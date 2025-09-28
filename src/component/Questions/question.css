@@ -1,132 +1,139 @@
-/* Wrapper */
+/* question.css */
+
+/* Wrapper styling */
 .questions-wrapper {
+  font-family: 'Inter', sans-serif;
   padding: 30px;
-  background: #1a1a2e; /* Dark wall background */
-  min-height: 100vh;
-  font-family: 'Patrick Hand', 'Comic Sans MS', cursive; /* Handwritten feel */
-  color: #333;
+  background-color: #f5f7fa;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  margin: 30px auto;
 }
 
-/* Title */
-.title {
+/* Page title */
+.questions-wrapper .title {
   font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 25px;
-  color: #ffcc00; /* Sticky note accent */
+  color: #333;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-/* No questions message */
-.no-questions {
-  font-size: 16px;
-  color: #aaa;
-  text-align: center;
-  margin-top: 50px;
+/* Filter dropdown */
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-container label {
+  margin-right: 10px;
+  font-weight: 500;
+  color: #555;
+}
+
+.filter-container select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.filter-container select:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.2);
 }
 
 /* Questions grid */
 .questions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
-  justify-items: center;
 }
 
-/* Sticky note card */
+/* Individual question card */
 .question-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
   position: relative;
-  background: #fff59d; /* Default sticky note yellow */
-  border-radius: 10px;
-  padding: 18px 15px;
-  width: 220px;
-  min-height: 120px;
-  box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
-  transform: rotate(calc(-3deg + 6deg * var(--i))); /* Slight tilt */
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .question-card:hover {
-  transform: rotate(0deg) translateY(-3px);
-  box-shadow: 6px 6px 14px rgba(0,0,0,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Important star */
-.star {
+/* Star for important questions */
+.question-card .star {
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: 16px;
+  right: 16px;
+  color: #f1c40f;
   font-size: 20px;
-  color: #f44336; /* Red star for important */
 }
 
 /* Question text */
 .question-text {
-  font-size: 15px;
-  line-height: 1.4;
-  color: #222;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #333;
 }
 
-.student-name {
-  font-weight: 700;
-  margin-right: 5px;
-}
-
-/* Tag container */
-.tags {
-  margin-top: auto;
-  display: flex;
-  justify-content: flex-start;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-/* Tag styles */
-.tag {
-  padding: 4px 8px;
-  border-radius: 15px;
-  font-size: 11px;
+.question-text .student-name {
   font-weight: 600;
-  user-select: none;
-  cursor: pointer;
-  transition: all 0.1s ease;
+  margin-right: 5px;
+  color: #2575fc;
 }
 
-/* Importance tag */
+/* Tags container */
+.tags {
+  display: flex;
+  gap: 10px;
+}
+
+/* Individual tags */
+.tag {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+/* Importance tag colors */
 .tag.importance.important {
-  background: #ff8a80;
-  color: #fff;
+  background: #ffd70033;
+  color: #f1c40f;
 }
 
 .tag.importance.unimportant {
-  background: #ffe57f;
+  background: #ddd;
   color: #555;
 }
 
-/* Status tag */
+/* Status tag colors */
 .tag.status.answered {
-  background: #81c784;
-  color: #fff;
+  background: #d4edda;
+  color: #155724;
 }
 
 .tag.status.unanswered {
-  background: #ffe082;
-  color: #555;
+  background: #f8d7da;
+  color: #721c24;
 }
 
-/* Hover effect on tags */
-.tag:hover {
-  opacity: 0.8;
+/* No questions message */
+.no-questions {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #777;
+  margin-top: 40px;
 }
-
-/* Card backgrounds for answered/unanswered */
-.question-card.answered {
-  background: #dcedc8; /* Light green sticky */
-}
-
-.question-card.unanswered {
-  background: #fff9c4; /* Light yellow sticky */
-}
-
-
