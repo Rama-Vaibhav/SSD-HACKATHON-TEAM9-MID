@@ -1,46 +1,58 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Signup.css';
 
 const SignupContainer = ({ formData, handleChange, handleSubmit }) => {
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input 
-          placeholder='Fullname'
+    <div className="signup-container">
+      <form onSubmit={handleSubmit} className="signup-form">
+        <h2>Sign Up</h2>
+
+        <input
+          placeholder='Full Name'
           name='fullName'
           value={formData.fullName}
           onChange={handleChange}
+          required
         />
-        <input 
-          placeholder='Role'
+
+        <input
+          placeholder='Email'
+          type="email"
+          name='email'
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          placeholder='Password'
+          type="password"
+          name='password'
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+
+        <select
           name='role'
           value={formData.role}
           onChange={handleChange}
-        />
-        <input 
-          placeholder='Email'
-          name='email'
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+          required
+        >
+          <option value="Professor">Professor</option>
+          <option value="TA">TA</option>
+          <option value="Student">Student</option>
+        </select>
 
-        <input 
-          placeholder='Password'
-          name='password'
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <button type='submit'>
-          Submit
-        </button>
+        <button type='submit'>Submit</button>
       </form>
 
-      Already have an account? <Link to='/'>Login</Link> 
+      <p className="login-link">
+        Already have an account? <Link to='/'>Login</Link>
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default SignupContainer
+export default SignupContainer;

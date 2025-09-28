@@ -1,101 +1,73 @@
-
 import React, { useState } from 'react';
-import {db} from "../db/db.js";
-import { Link, useNavigate } from 'react-router-dom';
-import '../containers/Signup/signup.css';
-
+import { db } from "../db/db.js";
+import { useNavigate } from 'react-router-dom';
+import SignupContainer from '../containers/Signup/SignupContainer.jsx';
 const SignUp = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [formData,setFormData] = useState({
-    fullName:'',email:'',password:'', role: 'Student'
-  })
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    role: 'Student'
+  });
 
- 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-  function handleChange(event){
-    setFormData((prevFormData)=>{
-      return{
-        ...prevFormData,
-        [event.target.name]:event.target.value
-      }
-
-    })
-
-  }
-
-  async function handleSubmit(e){
-    e.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
-      const { data, error } = await db.auth.signUp(
-        {
-          email: formData.email,
-          password: formData.password,
-          options: {
-            data: {
-              full_name: formData.fullName,
-              role: formData.role,
-            }
+      // Sign up via Supabase auth
+      const { data, error } = await db.auth.signUp({
+        email: formData.email.trim(),
+        password: formData.password,
+        options: {
+          data: {
+            full_name: formData.fullName.trim(),
+            role: formData.role,
           }
         }
-      )
-      if (error) throw error
-      alert('Check your email for verification link')
-      navigate('/')
+      });
 
-      
-    } catch (error) {
-      alert(error)
+      if (error) throw error;
+
+      const userId = data.user?.id;
+
+      if (userId) {
+        // Insert into user_details table
+        const { error: insertError } = await db.from("user_details").insert([
+          {
+            id: userId,
+            name: formData.fullName.trim(),
+            email: formData.email.trim(),
+            password: formData.password, // ⚠️ hash in production
+            role: formData.role
+          }
+        ]);
+
+        if (insertError) throw insertError;
+      }
+
+      alert('Check your email for verification link');
+      navigate('/');
+
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Error signing up");
     }
-  }
-
-
-
+  };
 
   return (
-    <div className="signup-container">
-      <form onSubmit={handleSubmit} className="signup-form">
-        <h2>Sign Up</h2>
-        <input 
-          placeholder='Fullname'
-          name='fullName'
-          onChange={handleChange}
-        />
-
-        <input 
-          placeholder='Email'
-          name='email'
-          onChange={handleChange}
-        />
-
-        <input 
-          placeholder='Password'
-          name='password'
-          type="password"
-          onChange={handleChange}
-        />
-
-        <select
-          name='role'
-          onChange={handleChange}
-        >
-          <option value="Student">Student</option>
-          <option value="Teacher">Teacher</option>
-          <option value="Teaching Assistant">Teaching Assistant</option>
-        </select>
-
-        <button type='submit'>
-          Submit
-        </button>
-
-
-      </form>
-      <p className="login-link">
-        Already have an account? <Link to='/'>Login</Link> 
-      </p>
-    </div>
-  )
-}
+    <SignupContainer
+      formData={formData}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+    />
+  );
+};
 
 export default SignUp;

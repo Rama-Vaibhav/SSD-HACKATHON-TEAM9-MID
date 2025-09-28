@@ -2,9 +2,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./applayout/AppLayout";
 import "./App.css";
 import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
+import SignUp from "./pages/Signup";
+import LoginContainer from "./containers/Login/LoginContainer";
 import ProtectedRouter from "./routes/ProtectedRouter";
+import StudentDashboard from "./pages/StudentDashboard";
 import Dashboard from "./component/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
@@ -21,13 +22,22 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: <LoginContainer />,
       },
       {
         path: "/dashboard",
         element: (
           <ProtectedRouter>
             <Dashboard />
+          </ProtectedRouter>
+        ),
+      },
+
+      {
+        path: "/studentdashboard",
+        element: (
+          <ProtectedRouter>
+            <StudentDashboard />
           </ProtectedRouter>
         ),
       },
