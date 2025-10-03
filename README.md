@@ -1,18 +1,86 @@
-# React + Vite
+# Classroom Q&A Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application designed for efficient class management, student Q&A, and role-based workflows. Built with **React**, **Express**, and **Supabase**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+  - [Authentication & Authorization](#authentication--authorization)
+  - [Role-Based Dashboards](#role-based-dashboards)
+  - [Class Management](#class-management)
+  - [Classroom Interaction](#classroom-interaction)
+  - [TA Workflow](#ta-workflow)
+- [Project Structure](#project-structure)
+- [Setup & Installation](#setup--installation)
+- [Usage](#usage)
+- [License](#license)
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Tech Stack
+- **Frontend:** React, React Router, JSX, Tailwind/CSS
+- **Backend:** Express.js, Node.js
+- **Database:** Supabase (PostgreSQL)
+- **Real-time Communication:** Socket.io
+- **Authentication & Authorization:** Supabase Auth, Role-Based Access
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Authentication & Authorization
+- Email/password authentication with **user verification**.
+- **Role-based authentication**: Students, TAs, Professors.
+- Secure access to dashboards and features based on role.
+
+### Role-Based Dashboards
+- **Professor Dashboard**
+  - Create, view, and delete classes.
+  - Assign TAs to handle important/unanswered questions.
+  - View all questions from students with filters for unanswered or important questions.
+
+- **TA Dashboard**
+  - View **only Important + Unanswered questions** assigned by professor.
+  - Mark questions as answered.
+  - Automatically updated when professors assign new questions.
+
+- **Student Dashboard**
+  - Join or leave classes.
+  - Post questions in class rooms.
+  - View all joined classes.
+
+### Class Management
+- Professors can create classes with **unique class codes**.
+- Custom hooks for **fetching current user details**.
+- Assign TA for a class to handle important questions.
+- Filters for unanswered or important questions.
+
+### Classroom Interaction
+- Students can **join classes** using class codes.
+- Students can **post questions** inside a class room.
+- Students can **leave a class** anytime.
+- Real-time updates using **Socket.io**.
+
+### TA Workflow
+- TAs receive all **Important + Unanswered questions** after professors assign them.
+- Mark questions as answered.
+- TA dashboard updates dynamically when new questions are assigned.
+
+---
+
+## Project Structure
+
+/src
+/pages
+/Dashboard
+/StudentDashboard
+/TADashboard
+/ClassRoom
+/hooks
+CurrentUser.jsx
+/db
+db.js
+App.jsx
+index.jsx

@@ -1,14 +1,112 @@
-.home-container {
-  display: flex;
-  gap: 20px; /* space between boxes */
-  padding: 20px;
-  height: 100vh; /* full viewport height */
-  width: 600px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.box {
-  flex: 1; /* each box takes equal width */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.home-container {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80")
+      no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.overlay {
+  text-align: center;
+  color: #fff;
+  max-width: 900px;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+}
+
+.app-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  color: #00aaff;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.features {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background: #ffffff11;
+  padding: 1.2rem;
+  border-radius: 12px;
+  width: 250px;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  background: #ffffff22;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.5rem;
+  color: #00aaff;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-btn {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.login-btn:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+.signup-btn {
+  background-color: #00aaff;
+  color: #fff;
+}
+
+.signup-btn:hover {
+  background-color: #0088cc;
+  transform: translateY(-2px);
 }

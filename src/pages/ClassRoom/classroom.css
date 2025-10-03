@@ -38,6 +38,7 @@
   border: 1px solid #d1d5db;
   font-size: 1.05rem;
   outline: none;
+  color: black;
   transition: all 0.3s ease-in-out;
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);

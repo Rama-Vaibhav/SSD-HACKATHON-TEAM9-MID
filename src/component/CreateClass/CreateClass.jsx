@@ -13,7 +13,7 @@ const CreateClass = ({ user }) => {
         alert("User information not found.");
         return;
       }
-
+      
       const { data, error } = await db
         .from("classes")
         .insert([{ professor_id: user.id }])

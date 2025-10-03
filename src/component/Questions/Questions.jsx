@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { db } from "../../db/db";
 import './question.css';
-
 const socket = io("http://localhost:5000");
-
 const Questions = ({ classCode }) => {
   const [questions, setQuestions] = useState([]);
   const [filter, setFilter] = useState("All"); // Filter state
 
   useEffect(() => {
     if (!classCode) return;
-
     socket.emit("joinClass", classCode);
 
     const fetchQuestions = async () => {
